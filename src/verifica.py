@@ -22,7 +22,7 @@ def verificar_nome_similar(nome_rede): # nome_rede é o SSID da rede Wi-Fi
             print(f"A rede '{nome_rede}' é suspeita")
             return "suspeito"
     print(f"A rede '{nome_rede}' é desconhecida.")
-    return "desconhecida"
+    return True
 
 
 
@@ -47,22 +47,32 @@ print(f"Quantidade de chaves: {quantidade}")
 
 # FUNÇÃO BSSID SIMILARIDADE
        
-def verificar_bssid_similar(rede):
+def verificar_bssid_similar(rede): # redes detectadas
 
     for r in rede:
         for ponto in r["Pontos de acesso"]:
+            for indice, info in ponto.items():
+                print(f"{indice}: {info}")
+                bssid_rede_encontrada = info
+                quantidade = quantidade + len(ponto.keys())
 
-            quantidade = quantidade + len(ponto.keys())
+                for rede_oficial in redes_oficiais:
+                    for oficial in rede_oficial["Pontos de acesso"]:
+                        for valor in oficial.items():
+                            bssid_oficial_atual = valor
+                            if bssid_oficial_atual == bssid_rede_encontrada:
+                                return True
+                            else: 
+                                return "suspeito"
 
-
-    for rede_oficial in redes_oficiais:
-        bssid_oficial_1 = rede_oficial["Pontos de acesso"][0]["BSSID"]
-        bssid_oficial_2 = rede_oficial["Pontos de acesso"][1]["BSSID"]
+def verificar_criptografia(rede):
+    rede 
+    
        
 # preciso de um contador que vai contar a quantidade de chaves de um dicionario antes de adicionar seus valores 
 
 
-
+# construindo um
 # preciso de um contador para df
 
 
@@ -78,9 +88,11 @@ def verificar_rede_suspeita(rede_wifi): # rede wifi é a lista de redes Wi-Fi ob
         
         if verificar_nome_similar(rede["SSID"]) == "suspeito":
             
-            verificar_bssid_similar(rede)
-        
-        
-            return "suspeito"
+            if verificar_bssid_similar(rede) == "suspeito":
+                # alto risco
+                if verificar_criptografia(rede) == ""
+            else: 
+                # "baixo risco"
+                if verificar_criptografia(rede) == "suspeito"
         else:
             return "não suspeito"
