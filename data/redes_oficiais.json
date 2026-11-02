@@ -1,0 +1,35 @@
+[
+    {
+        "SSID": "JICC",
+        "Pontos de acesso": [
+            {
+                "1": {
+                    "BSSID": "00:11:22:33:44:55",
+                    "Canal": "6"
+                }
+            },
+            {
+                "2": {
+                    "BSSID": "66:77:88:99:11:55",
+                    "Canal": "128"
+                }
+            }
+        ],
+        "Criptografia": "WPA2",
+        "Autenticacao": "WPA2-Personal"
+    },
+    {
+        "SSID": "JICC2",
+        "Pontos de acesso": [
+            {
+                "1": {
+                    "BSSID": "66:77:88:99:AA:BB",
+                    "Canal": "11"
+                }
+            }
+        ],
+        "Criptografia": "WPA2",
+        "Autenticacao": "WPA2-Personal"
+    }
+]
+
