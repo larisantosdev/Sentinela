@@ -1,5 +1,5 @@
-
-import       
+from src.verifica import verificar_nome_similar
+from src.scanner import get_wifi_networks
 
 def verificar_rede(rede_wifi): # rede_wifi é a lista de redes Wi-Fi obtida pelo get_wifi_networks()
     for rede in rede_wifi:
