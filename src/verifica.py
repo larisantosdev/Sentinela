@@ -22,7 +22,7 @@ def verificar_nome_similar(nome_rede): # nome_rede é o SSID da rede Wi-Fi
             print(f"A rede '{nome_rede}' é suspeita")
             return "suspeito"
     print(f"A rede '{nome_rede}' é desconhecida.")
-    return True
+    return "diferente"
 
 
 
@@ -61,20 +61,22 @@ def verificar_bssid_similar(rede): # redes detectadas
                         for valor in oficial.items():
                             bssid_oficial_atual = valor
                             if bssid_oficial_atual == bssid_rede_encontrada:
-                                return True
+                                return "igual"
                             else: 
-                                return "suspeito"
+                                return "diferente"
+
+
+
 
 def verificar_criptografia(rede):
-    rede 
+       for r in rede:
+           for rede_oficial in redes_oficiais:
+               crip_oficial = rede_oficial["criptografia"]
+               crip_rede = r["criptografia"]
+           
+           
     
        
-# preciso de um contador que vai contar a quantidade de chaves de um dicionario antes de adicionar seus valores 
-
-
-# construindo um
-# preciso de um contador para df
-
 
 
 
@@ -84,15 +86,20 @@ def verificar_criptografia(rede):
 
 
 def verificar_rede_suspeita(rede_wifi): # rede wifi é a lista de redes Wi-Fi obtida pelo get_wifi_networks()
+
+    cont = 0
+    
     for rede in rede_wifi:
         
         if verificar_nome_similar(rede["SSID"]) == "suspeito":
+            cont = 10;
             
-            if verificar_bssid_similar(rede) == "suspeito":
+            if verificar_bssid_similar(rede) == "diferente":
                 # alto risco
-                if verificar_criptografia(rede) == ""
-            else: 
-                # "baixo risco"
+                cont = cont + 10
                 if verificar_criptografia(rede) == "suspeito"
+            else: 
+                # "baixo risco - possivel rede oficial"
+                if verificar_criptografia(rede) == "igual"
         else:
             return "não suspeito"
