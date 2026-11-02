@@ -1,22 +1,14 @@
-import subprocess 
 
-
+import       
 
 def verificar_rede(rede_wifi): # rede_wifi é a lista de redes Wi-Fi obtida pelo get_wifi_networks()
     for rede in rede_wifi:
         if verificar_nome_similar(rede['SSID']) == "suspeito":
             print(f"A rede '{rede['SSID']}' é suspeita")
-        
-        
-        
         else:
             print(f"A rede '{rede['SSID']}' não é suspeita.")
 
-
-
-
-
-
+# esse com 
 
 
 def main():
