@@ -8,6 +8,9 @@ def carregar_redes_oficiais():
 
 redes_oficiais = carregar_redes_oficiais()
 
+print("AQUI \n")
+print(redes_oficiais) # é uma lista de dicionarios
+
 # FUNÇÃO QUE VERIFICA A SIMILARIDADE DO NOME DA REDE (SSID) COM AS REDES OFICIAIS
 
 
@@ -47,36 +50,34 @@ print(f"Quantidade de chaves: {quantidade}")
 
 # FUNÇÃO BSSID SIMILARIDADE
        
-def verificar_bssid_similar(rede): # redes detectadas
+def verificar_bssid_similar(rede): # redes detectadas 
 
-    for r in rede:
-        for ponto in r["Pontos de acesso"]:
-            for indice, info in ponto.items():
-                print(f"{indice}: {info}")
-                bssid_rede_encontrada = info
-                quantidade = quantidade + len(ponto.keys())
+    for ponto in rede["Pontos de acesso"]:
+        for indice, info in ponto.items():
+            print(f"{indice}: {info}")
+            bssid_rede_encontrada = info["BSSID"]
 
-                for rede_oficial in redes_oficiais:
-                    for oficial in rede_oficial["Pontos de acesso"]:
-                        for valor in oficial.items():
-                            bssid_oficial_atual = valor
-                            if bssid_oficial_atual == bssid_rede_encontrada:
-                                return "igual"
-                            else: 
-                                return "diferente"
+            for rede_oficial in redes_oficiais:
+                for oficial in rede_oficial["Pontos de acesso"]:
+                    for valor in oficial.values(): # valor é um dicionario com BSSID e Canal
+                        bssid_oficial_atual = valor["BSSID"]
+                        if bssid_oficial_atual == bssid_rede_encontrada:
+                            return "igual"
+    return "diferente"
 
 
-
+'''
 
 def verificar_criptografia(rede):
-       for r in rede:
+       
+           
            for rede_oficial in redes_oficiais:
-               crip_oficial = rede_oficial["criptografia"]
-               crip_rede = r["criptografia"]
+               crip_oficial = rede_oficial["Criptografia"]
+               crip_rede = c["Criptografia"]
            
            
     
-       
+       '''
 
 
 
@@ -85,10 +86,10 @@ def verificar_criptografia(rede):
 
 
 
-def verificar_rede_suspeita(rede_wifi): # rede wifi é a lista de redes Wi-Fi obtida pelo get_wifi_networks()
+def verificar_rede_suspeita(rede_wifi): # rede wifi é a lista de redes Wi-Fi obtida pelo get_wifi_networks(), lista de dicionarios
 
     cont = 0
-    
+    # suspeitas, desconhecidas ou possivelmente legítimas
     for rede in rede_wifi:
         
         if verificar_nome_similar(rede["SSID"]) == "suspeito":
@@ -97,9 +98,12 @@ def verificar_rede_suspeita(rede_wifi): # rede wifi é a lista de redes Wi-Fi ob
             if verificar_bssid_similar(rede) == "diferente":
                 # alto risco
                 cont = cont + 10
-                if verificar_criptografia(rede) == "suspeito"
-            else: 
+                #if verificar_criptografia(rede) == "suspeito":
+               #     cont = cont + 10
+
+           # else: 
                 # "baixo risco - possivel rede oficial"
-                if verificar_criptografia(rede) == "igual"
-        else:
+               # if verificar_criptografia(rede) == "igual"
+
+        elif verificar_nome_similar(rede["SSID"]) == "diferente":
             return "não suspeito"

@@ -86,3 +86,5 @@ def get_wifi_networks():
 
 # return dados
 # (use return dados quando quiser ver as redes Wi-fi encontradas no terminal e return redes quando quiser ver as redes em formato de dicionário)
+
+print(get_wifi_networks())
