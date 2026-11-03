@@ -57,27 +57,48 @@ def verificar_bssid_similar(rede): # redes detectadas
             print(f"{indice}: {info}")
             bssid_rede_encontrada = info["BSSID"]
 
-            for rede_oficial in redes_oficiais:
-                for oficial in rede_oficial["Pontos de acesso"]:
-                    for valor in oficial.values(): # valor é um dicionario com BSSID e Canal
+            for rede_oficial in redes_oficiais: # pego o primeiro dicionario e passo pra rede_oficial
+                for oficial in rede_oficial["Pontos de acesso"]: # pego a lista de dicionarios do campo pontos de acesso e passo pra oficial {BSSID, CANAL} {BSSID, CANAL} {BSSID, CANAL}
+                    for valor in oficial.values(): # valor é um dicionario com BSSID e Canal -> {BSSID, CANAL} 
                         bssid_oficial_atual = valor["BSSID"]
                         if bssid_oficial_atual == bssid_rede_encontrada:
                             return "igual"
     return "diferente"
 
-
-'''
+# FUNÇÃO VERIFICA CRIPTOGRAFIA
 
 def verificar_criptografia(rede):
-       
+
+    crip_rede_wifi = rede["Criptografia"]
+    encontrou_igualdade = False
+
+    for rede_oficial in redes_oficiais:
+        crip_oficial = rede_oficial["Criptografia"]
+        if crip_oficial == crip_rede_wifi:
+            encontrou_igualdade = True
+
+    if encontrou_igualdade:
+        return "igual"
+    else:
+        return "diferente"
+
            
-           for rede_oficial in redes_oficiais:
-               crip_oficial = rede_oficial["Criptografia"]
-               crip_rede = c["Criptografia"]
            
-           
-    
-       '''
+# FUNÇÃO VERIFICA AUTENTICAÇÃO
+
+def verificar_autenticacao(rede):
+    aut = rede["Autenticacao"]
+    encontrou_igualdade = False
+
+    for rede_oficial in redes_oficiais: # são 2
+        aut_rede_oficial = rede_oficial["Autenticacao"]
+        if aut_rede_oficial == aut:
+            encontrou_igualdade = True
+
+    if encontrou_igualdade:
+        return "igual"
+    else:
+        return "diferente"
 
 
 
@@ -88,22 +109,84 @@ def verificar_criptografia(rede):
 
 def verificar_rede_suspeita(rede_wifi): # rede wifi é a lista de redes Wi-Fi obtida pelo get_wifi_networks(), lista de dicionarios
 
-    cont = 0
+    
     # suspeitas, desconhecidas ou possivelmente legítimas
     for rede in rede_wifi:
+        cont = 0
+
+        # SSID
+
+        resultado_nome = verificar_nome_similar(rede["SSID"])
+
+        match resultado_nome:
+            case "suspeito":
+                cont += 10;
+            case "diferente":
+                cont += 0
+                # return "rede não é suspeita"
+
+        # BSSID
+
+        resultado_bssid = verificar_bssid_similar(rede)
+
+        match resultado_bssid:
+            case "diferente":
+                cont += 10
+            case "igual":
+                cont += 0
+    
+        # CRIPTOGRAFIA
+
+        resultado_criptografia = verificar_criptografia(rede)
+
+        match resultado_criptografia:
+            case "diferente":
+                cont += 10
+            case "igual":
+                cont += 0
+
+
+        # AUTENTICAÇÃO
+
+        resultado_autenticacao = verificar_autenticacao(rede)
+
+        match resultado_autenticacao:
+            case "diferente":
+                cont += 10
+            case "igual":
+                cont += 0
+
+
+        # CANAL
+
+        resultado_canal = verificar_canal(rede)
+
+        match resultado_canal:
+            case "diferente":
+                cont += 10
+            case "igual":
+                cont += 0
         
-        if verificar_nome_similar(rede["SSID"]) == "suspeito":
-            cont = 10;
-            
-            if verificar_bssid_similar(rede) == "diferente":
-                # alto risco
-                cont = cont + 10
-                #if verificar_criptografia(rede) == "suspeito":
-               #     cont = cont + 10
 
-           # else: 
-                # "baixo risco - possivel rede oficial"
-               # if verificar_criptografia(rede) == "igual"
 
-        elif verificar_nome_similar(rede["SSID"]) == "diferente":
-            return "não suspeito"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
