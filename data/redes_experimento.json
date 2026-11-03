@@ -1,0 +1,177 @@
+[
+    {
+        "SSID": "JICC-5G",
+        "Pontos de acesso": [
+            {
+                "1": {
+                    "BSSID": "74:3c:18:64:dc:de",
+                    "Canal": "100"
+                }
+            }
+        ],
+        "Criptografia": "CCMP",
+        "Autenticacao": "WPA2-Personal"
+    },
+    {
+        "SSID": "aaa",
+        "Pontos de acesso": [
+            {
+                "1": {
+                    "BSSID": "0a:8a:f1:01:7b:ed",
+                    "Canal": "3"
+                }
+            }
+        ],
+        "Criptografia": "CCMP",
+        "Autenticacao": "WPA2-Personal"
+    },
+    {
+        "SSID": "G12_Naciff-2.4",
+        "Pontos de acesso": [
+            {
+                "1": {
+                    "BSSID": "08:8a:f1:00:7b:ed",
+                    "Canal": "3"
+                }
+            }
+        ],
+        "Criptografia": "CCMP",
+        "Autenticacao": "WPA2-Personal"
+    },
+    {
+        "SSID": "SAATFIBRA- Life Cakes",
+        "Pontos de acesso": [
+            {
+                "1": {
+                    "BSSID": "88:b3:62:a5:d0:f9",
+                    "Canal": "11"
+                }
+            }
+        ],
+        "Criptografia": "CCMP",
+        "Autenticacao": "WPA2-Personal"
+    },
+    {
+        "SSID": "SAATFIBRA- Rodrigo",
+        "Pontos de acesso": [
+            {
+                "1": {
+                    "BSSID": "88:b3:62:a5:4d:99",
+                    "Canal": "11"
+                }
+            }
+        ],
+        "Criptografia": "CCMP",
+        "Autenticacao": "WPA2-Personal"
+    },
+    {
+        "SSID": "SAATFIBRA-barreto",
+        "Pontos de acesso": [
+            {
+                "1": {
+                    "BSSID": "74:6f:88:16:8c:cc",
+                    "Canal": "9"
+                }
+            }
+        ],
+        "Criptografia": "CCMP",
+        "Autenticacao": "WPA2-Personal"
+    },
+    {
+        "SSID": "LARA-2.4G",
+        "Pontos de acesso": [
+            {
+                "1": {
+                    "BSSID": "58:d2:37:e2:84:26",
+                    "Canal": "9"
+                }
+            }
+        ],
+        "Criptografia": "CCMP",
+        "Autenticacao": "WPA2-Personal"
+    },
+    {
+        "SSID": "Isabel2.4",
+        "Pontos de acesso": [
+            {
+                "1": {
+                    "BSSID": "f0:68:65:40:a7:4a",
+                    "Canal": "11"
+                }
+            }
+        ],
+        "Criptografia": "CCMP",
+        "Autenticacao": "WPA2-Personal"
+    },
+    {
+        "SSID": "Isabel-5G",
+        "Pontos de acesso": [
+            {
+                "1": {
+                    "BSSID": "f0:68:65:40:a7:4e",
+                    "Canal": "100"
+                }
+            }
+        ],
+        "Criptografia": "CCMP",
+        "Autenticacao": "WPA2-Personal"
+    },
+    {
+        "SSID": "SAATFIBRA-barreto_5G",
+        "Pontos de acesso": [
+            {
+                "1": {
+                    "BSSID": "74:6f:88:16:8c:ce",
+                    "Canal": "100"
+                }
+            }
+        ],
+        "Criptografia": "CCMP",
+        "Autenticacao": "WPA2-Personal"
+    },
+    {
+        "SSID": "G12_Lucas_2.4",
+        "Pontos de acesso": [
+            {
+                "1": {
+                    "BSSID": "02:eb:d8:ed:04:bc",
+                    "Canal": "3"
+                }
+            }
+        ],
+        "Criptografia": "CCMP",
+        "Autenticacao": "WPA2-Personal"
+    },
+    {
+        "SSID": "JICC",
+        "Pontos de acesso": [
+            {
+                "1": {
+                    "BSSID": "00:11:22:33:44:55",
+                    "Canal": "6"
+                }
+            },
+            {
+                "2": {
+                    "BSSID": "66:77:88:99:11:55",
+                    "Canal": "128"
+                }
+            }
+        ],
+        "Criptografia": "WPA2",
+        "Autenticacao": "WPA2-Personal"
+    },
+    {
+        "SSID": "JICC2",
+        "Pontos de acesso": [
+            {
+                "1": {
+                    "BSSID": "66:77:88:99:AA:BB",
+                    "Canal": "11"
+                }
+            }
+        ],
+        "Criptografia": "WPA2",
+        "Autenticacao": "WPA2-Personal"
+    }
+]

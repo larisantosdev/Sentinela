@@ -8,8 +8,8 @@ def carregar_redes_oficiais():
 
 redes_oficiais = carregar_redes_oficiais()
 
-print("AQUI \n")
-print(redes_oficiais) # é uma lista de dicionarios
+#print("AQUI \n")
+#print(redes_oficiais) # é uma lista de dicionarios
 
 # FUNÇÃO QUE VERIFICA A SIMILARIDADE DO NOME DA REDE (SSID) COM AS REDES OFICIAIS
 
@@ -22,9 +22,9 @@ def verificar_nome_similar(nome_rede): # nome_rede é o SSID da rede Wi-Fi
                                        nome_rede.lower(),
                                        ssid_oficial.lower()).ratio()
         if similaridade > 0.7 :
-            print(f"A rede '{nome_rede}' é suspeita")
+            print(f"A rede '{nome_rede}' é suspeita ou oficial")
             return "suspeito"
-    print(f"A rede '{nome_rede}' é desconhecida.")
+    print(f"A rede '{nome_rede}' apresenta BAIXO RISCO.")
     return "diferente"
 
 
@@ -38,7 +38,7 @@ def verificar_bssid_similar(rede): # redes detectadas
 
     for ponto in rede["Pontos de acesso"]:
         for indice, info in ponto.items():
-            print(f"{indice}: {info}")
+            #print(f"{indice}: {info}")
             bssid_rede_encontrada = info["BSSID"]
 
             for rede_oficial in redes_oficiais: # pego o primeiro dicionario e passo pra rede_oficial
@@ -144,8 +144,15 @@ def verificar_rede_suspeita(rede_wifi): # rede wifi é a lista de redes Wi-Fi ob
             case "suspeito":
                 cont += 10;
             case "diferente":
-                cont += 0
+                cont = 10
+
+                print(f"\nRede analisada: {rede['SSID']}")
+                print(f"Pontuação de risco: {cont} \n")
+                print(f"CLASSIFICAÇÃO: RISCO BAIXO")
+                print("-" * 45)
                 # return "rede não é suspeita"
+
+                continue
 
         # BSSID
 
@@ -190,8 +197,22 @@ def verificar_rede_suspeita(rede_wifi): # rede wifi é a lista de redes Wi-Fi ob
                 cont += 0
                     
         print(f"\nRede analisada: {rede['SSID']}")
-        print(f"Pontuação de risco: {cont}")
+        print(f"Pontuação de risco: {cont} \n")
+        if cont >= 40:
+            print(f"CLASSIFICAÇÃO: RISCO CRÍTICO")
+        elif cont >= 30:
+            print(f"CLASSIFICAÇÃO: RISCO MODERADO")
+        elif cont <= 20:
+            print(f"CLASSIFICAÇÃO: RISCO BAIXO")
+        print("-" * 45)
 
+
+# FAZENDO UM TESTE AQUI
+
+with open("../data/redes_experimento.json", "r", encoding="utf-8") as arq:
+    wifi = json.load(arq)
+
+verificar_rede_suspeita(wifi)
 
 
 
