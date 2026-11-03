@@ -33,3 +33,26 @@
 
         elif verificar_nome_similar(rede["SSID"]) == "diferente":
             return "não suspeito"
+
+______________________________________________________________________________________________
+
+IMPRIME INFORMAÇÕES DAS REDES OFICIAIS
+______________________________________________________________________________________________
+
+
+# PONTOS DE ACESSO INFORMAÇÕES
+quantidade = 0
+
+
+
+for rede in redes_oficiais:
+    for ponto in rede["Pontos de acesso"]:
+
+        quantidade = quantidade + len(ponto.keys())
+
+        for indice, info in ponto.items():
+            print(f"SSID: {rede['SSID']}")
+            print(f"  {indice}: {info}")
+
+print(f"Quantidade de chaves: {quantidade}")
+

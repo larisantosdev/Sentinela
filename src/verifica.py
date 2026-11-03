@@ -30,27 +30,11 @@ def verificar_nome_similar(nome_rede): # nome_rede é o SSID da rede Wi-Fi
 
 
 
-# PONTOS DE ACESSO INFORMAÇÕES
-quantidade = 0
-
-"""
-
-for rede in redes_oficiais:
-    for ponto in rede["Pontos de acesso"]:
-
-        quantidade = quantidade + len(ponto.keys())
-
-        for indice, info in ponto.items():
-            print(f"SSID: {rede['SSID']}")
-            print(f"  {indice}: {info}")
-
-print(f"Quantidade de chaves: {quantidade}")
-
-"""
-
 # FUNÇÃO BSSID SIMILARIDADE
        
 def verificar_bssid_similar(rede): # redes detectadas 
+
+    encontrou_igualdade = False
 
     for ponto in rede["Pontos de acesso"]:
         for indice, info in ponto.items():
@@ -62,8 +46,43 @@ def verificar_bssid_similar(rede): # redes detectadas
                     for valor in oficial.values(): # valor é um dicionario com BSSID e Canal -> {BSSID, CANAL} 
                         bssid_oficial_atual = valor["BSSID"]
                         if bssid_oficial_atual == bssid_rede_encontrada:
-                            return "igual"
-    return "diferente"
+                            encontrou_igualdade = True
+
+    if encontrou_igualdade:
+        return "igual"
+    else:
+        return "diferente"
+
+
+# FUNÇÃO VERIFICA CANAL
+
+
+def verificar_canal(rede):
+
+    encontrou_igualdade = False
+
+    ponto = rede["Pontos de acesso"] # ponto é uma lista
+    for acesso in ponto: # acesso é cada dicionário dentro da lista ponto (2 dicionarios)
+        for valor in acesso.values(): # valor é um dicionário interno que contém BSSID e Canal
+            canal_rede_wifi = valor["Canal"] # canal recebe o número do canal daquele ponto de acesso
+
+            for rede_oficial in redes_oficiais:
+                for oficial in rede_oficial["Pontos de acesso"]:
+                    for dados in oficial.values(): # acesso é cada dicionário dentro da lista
+                        canal_oficial = dados["Canal"] # canal_oficial recebe o número do canal do ponto de acesso oficial
+                        if canal_oficial == canal_rede_wifi:
+                            encontrou_igualdade = True
+
+    if encontrou_igualdade:
+        return "igual"
+    else:
+        return "diferente"
+
+
+
+
+
+
 
 # FUNÇÃO VERIFICA CRIPTOGRAFIA
 
@@ -101,10 +120,13 @@ def verificar_autenticacao(rede):
         return "diferente"
 
 
+            
 
 
 
 
+
+# FUNÇÃO PRINCIPAL/GERAL
 
 
 def verificar_rede_suspeita(rede_wifi): # rede wifi é a lista de redes Wi-Fi obtida pelo get_wifi_networks(), lista de dicionarios
@@ -166,8 +188,9 @@ def verificar_rede_suspeita(rede_wifi): # rede wifi é a lista de redes Wi-Fi ob
                 cont += 10
             case "igual":
                 cont += 0
-        
-
+                    
+        print(f"\nRede analisada: {rede['SSID']}")
+        print(f"Pontuação de risco: {cont}")
 
 
 
