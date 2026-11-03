@@ -1,0 +1,35 @@
+
+        if verificar_nome_similar(rede["SSID"]) == "suspeito":
+            cont = cont + 10;
+            
+            if verificar_bssid_similar(rede) == "diferente":
+                # alto risco
+                cont = cont + 10
+                if verificar_criptografia(rede) == "diferente":
+                    # alto risco
+                    cont = cont + 10
+                else:
+                    # criptografia igual. baixo risco - possivel rede oficial"
+                    cont = cont + 0
+
+                    ##########################
+            else: 
+                # bssid igual. "baixo risco - possivel rede oficial"
+                cont = cont + 0
+                if verificar_criptografia(rede) == "igual":
+                    # criptografia igual a rede oficial - baixo risco
+                    cont = cont + 0
+                    if verificar_autenticacao(rede) == "igual":
+                        # autenticação igual - risco baixo
+                        cont = cont + 0
+                
+                    else:
+                        # risco baixo
+                        cont = cont + 1                       
+                else:
+                    # criptografia diferente. risco medio (suspeito)
+                    cont = cont + 10
+
+
+        elif verificar_nome_similar(rede["SSID"]) == "diferente":
+            return "não suspeito"
