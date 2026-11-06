@@ -21,6 +21,34 @@ A proposta é desenvolver uma ferramenta que auxilie equipes de infraestrutura n
 
 ---
 
+
+---
+
+## 🧠 Lógica de análise e árvore de decisão
+
+O Sentinela utiliza uma lógica de análise baseada em múltiplos critérios para identificar possíveis redes Wi-Fi que tentam se passar por redes oficiais.
+
+O processo começa pela comparação do SSID da rede detectada com os nomes das redes oficiais cadastradas.
+
+A partir dessa comparação, o sistema segue diferentes caminhos:
+
+1. **SSID sem similaridade significativa:** a rede é classificada como desconhecida e recebe uma pontuação inicial de baixo risco, sem necessidade de realizar as demais verificações.
+2. **SSID semelhante ao de uma rede oficial:** o sistema inicia uma investigação mais detalhada das características técnicas.
+3. **Verificação dos pontos de acesso:** são analisados BSSID, criptografia, autenticação e canal, buscando identificar divergências em relação ao cadastro oficial.
+4. **Identificação de divergências:** possíveis inconsistências são registradas e podem gerar alertas para investigação.
+5. **Compatibilidade com o cadastro:** quando todas as características são compatíveis com uma mesma rede oficial, ela pode ser reconhecida como legítima.
+
+A lógica de análise está representada na árvore de decisão abaixo:
+
+<p align="center">
+  <img src="docs/arvore-decisao.png" alt="Árvore de decisão do Sentinela" width="750">
+</p>
+
+*A árvore representa a lógica de classificação proposta para o sistema e poderá ser atualizada conforme o desenvolvimento for avançando.*
+
+---
+
+
 ## 🎯 Objetivos
 
 - Detectar redes Wi-Fi próximas ao dispositivo.
