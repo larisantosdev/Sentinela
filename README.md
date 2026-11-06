@@ -147,8 +147,6 @@ Execute o programa:
 python main.py
 ```
 
-*O nome do arquivo de execução poderá variar conforme a organização final do projeto.*
-
 ---
 
 ## 📌 Status do projeto
