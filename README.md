@@ -41,7 +41,7 @@ A partir dessa comparação, o sistema segue diferentes caminhos:
 A lógica de análise está representada na árvore de decisão abaixo:
 
 <p align="center">
-  <img src="docs/arvore-decisao.png" alt="Árvore de decisão do Sentinela" width="750">
+  <img src="docs/arvore-de-decisao.png" alt="Árvore de decisão do Sentinela" width="750">
 </p>
 
 *A árvore representa a lógica de classificação proposta para o sistema e poderá ser atualizada conforme o desenvolvimento for avançando.*
